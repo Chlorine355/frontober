@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style media="screen">
+      input {
+          border-right: none;
+          outline: none!important;
+          width: 165px;
+          font-family: monospace;
+          font-size: 30px;
+      }
+      .container {
+        margin: 50px auto 0 auto;
+        display: flex;
+        width: 365px;
+        align-items: flex-start;
+      }
+
+      .trashcan-container {
+        width: 200px;
+        height: 300px;
+        position: relative;
+      }
+
+      .trashcan-container > div {
+        width: fit-content;
+        height: auto;
+        animation: fall 1.5s forwards ease-in;
+        position: absolute;
+        font-size: 30px;
+        font-family: monospace;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: rotate(0deg);
+          top: 0px;
+          left: 0px;
+        }
+        100% {
+          transform: rotate(890deg);
+          top: 230px;
+          left: 40px;
+          display: none;
+        }
+      }
+      .can-img {
+        position: absolute;
+    width: 100px;
+    bottom: 0;
+    z-index: 10;
+    left: 10px;
+      }
+      .caption {
+        margin: 50px auto 0 auto;
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+    <title>Trash can</title>
+  </head>
+  <body>
+    <div class="caption">
+      <span style="font-size: 50px;">Enter username</span>
+      <span>use no more than 10 characters</span>
+    </div>
+    <div class="container">
+      <div>
+        <input type="text" name="username" id="input"/>
+      </div>
+      <div class="trashcan-container" id="trash-container">
+        <img src="src/trashcan.png" class="can-img"/>
+      </div>
+    </div>
+
+    <script>
+      const input = document.getElementById("input");
+      const trashContainer = document.getElementById("trash-container");
+      input.addEventListener("input", (event) => {
+        const newValue = event.target.value;
+        if (newValue.length > 10) {
+          console.log(newValue.length > 10);
+          input.value = input.value.substring(0, 10);
+          const newDiv = document.createElement("div");
+          newDiv.innerText = newValue[10];
+          trashContainer.appendChild(newDiv)
+          setTimeout(() => {newDiv.parentElement.removeChild(newDiv)}, 2000);
+        }
+      })
+      </script>
+  </body>
+</html>
