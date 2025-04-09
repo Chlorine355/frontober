@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style media="screen">
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        gap: 10px;
+      }
+    </style>
+  <body>
+    <img height="300" src='https://cm.author.today/content/2024/11/16/e605d4812b9e4b32b93480c7fecbda5c.jpg?width=750&rmode=max' id='pic'>
+    <span>Настройте расширенность котят:</span>
+    <input type="range" value="450" min="50" max="1400" id="slider">
+    <script>
+      const pic = document.getElementById('pic');
+      const slider = document.getElementById('slider');
+      slider.addEventListener('input', (event) => {
+        pic.style.width = event.target.value + 'px';
+      })
+    </script>
+  </body>
+</html>
